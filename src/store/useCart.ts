@@ -70,6 +70,7 @@ export const useCart = create<CartState>()(
     }),
     {
       name: 'cart-storage',
+      
     }
   )
 )

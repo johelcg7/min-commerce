@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useCart } from '@/store/useCart'
-import { ShoppingCart, Music, Moon, Sun } from 'lucide-react'
+import { ShoppingCart, Music, Moon, Sun,  } from 'lucide-react'
 import AuthButton from "@/components/AuthButton"
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -90,7 +90,7 @@ export default function Navbar() {
               {dark ? (
                 <Sun className="h-5 w-5 text-yellow-400 animate-spin-slow" />
               ) : (
-                <Moon className="h-5 w-5 text-foreground animate-pulse" />
+                <Moon className="h-5 w-5 text-yellow-400 animate-pulse" />
               )}
             </Button>
           </div>

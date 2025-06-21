@@ -10,7 +10,7 @@ export default async function Home() {
   // Obtener los 8 productos más nuevos (musicales)
   const newProducts = await prisma.product.findMany({
     orderBy: { createdAt: "desc" },
-    take: 8,
+    take: 7,
   });
 
   return (

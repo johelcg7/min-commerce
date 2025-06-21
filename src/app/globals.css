@@ -76,7 +76,6 @@
   --sidebar-accent-foreground: #fff;
   --sidebar-border: #cbd5e1;
   --sidebar-ring: #6366f1;
-  --price: #d90429;
 }
 
 .dark {
@@ -111,7 +110,6 @@
   --sidebar-accent-foreground: #181f36;
   --sidebar-border: #232b47;
   --sidebar-ring: #6366f1;
-  --price: #ff6b6b;
 }
 
 body {
@@ -154,7 +152,7 @@ button, [type="button"], [type="submit"] {
   color: #fff;
   font-weight: 600;
   border-radius: var(--radius);
-  box-shadow: 0 4px 24px 0 #b3b8d1cc;
+  
   transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
 }
 .dark button, .dark [type="button"], .dark [type="submit"] {
@@ -162,7 +160,7 @@ button, [type="button"], [type="submit"] {
 }
 button:hover, [type="button"]:hover, [type="submit"]:hover {
   transform: scale(1.04);
-  background: linear-gradient(90deg, #6366f1 0%, #a78bfa 100%);
+  
   box-shadow: 0 6px 32px 0 #4f46e5cc;
 }
 
