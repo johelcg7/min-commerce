@@ -16,6 +16,13 @@ Min Commerce es una tienda de música construida con Next.js, React y Zustand. E
 - Se utiliza el store `useCart` (Zustand) para manejar el estado global del carrito.
 - El Navbar muestra el número total de ítems en el carrito, con animación si hay productos.
 
+### Historial de Compras por Cliente (sin login obligatorio)
+
+- Se implementa una página de historial de compras accesible sin autenticación.
+- El historial se muestra en la interfaz de usuario (`/orders`), recuperado desde la base de datos y filtrado por cliente usando el email.
+- El usuario puede ver sus compras previas en una lista visual, mostrando fecha, productos y total.
+- El identificador de cliente puede almacenarse en localStorage o cookies para asociar compras sin requerir login.
+
 ### Componentes y UI
 
 - `Navbar` incluye enlaces a inicio, catálogo y carrito.
@@ -34,6 +41,8 @@ Min Commerce es una tienda de música construida con Next.js, React y Zustand. E
 - `src/store/useCart.ts`: Store Zustand para el carrito.
 - `src/components/AuthButton.tsx`: Botón de autenticación.
 - `src/components/ui/button.tsx`: Componente de botón reutilizable.
+- `src/app/orders/page.tsx`: Página para mostrar el historial de compras del cliente actual.
+- `src/app/api/orders/route.ts`: Endpoint API para recuperar el historial de compras filtrado por cliente.
 
 ## Instalación
 
@@ -51,6 +60,7 @@ Min Commerce es una tienda de música construida con Next.js, React y Zustand. E
 
 - El modo oscuro se mantiene entre sesiones y se sincroniza entre pestañas.
 - El número de productos en el carrito se actualiza en tiempo real.
+- El historial de compras se filtra por cliente usando el email, sin requerir autenticación.
 - El proyecto utiliza iconos de [Lucide](https://lucide.dev/) y estilos de Tailwind CSS.
 
 ## Próximos pasos

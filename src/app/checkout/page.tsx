@@ -10,10 +10,13 @@ import { useForm } from 'react-hook-form'
 import type { CheckoutFormData } from '@/lib/validations/schema'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { Modal } from '@/components/ui/modal'
+import { useState, useEffect } from 'react'
 
 export default function CheckoutPage() {
   const { items, getTotal, clearCart } = useCart()
   const router = useRouter()
+  const [showModal, setShowModal] = useState(false)
 
   const {
     register,
@@ -46,17 +49,21 @@ export default function CheckoutPage() {
       }
 
       clearCart()
-      router.push('/orders')
+      setShowModal(true)
+      // router.push('/orders') // Ahora el usuario decide
     } catch (error) {
       console.error('Error:', error)
       alert('Hubo un error al procesar tu orden')
     }
   }
 
-  if (items.length === 0) {
-    router.push('/cart')
-    return null
-  }
+  // Redirigir si el carrito está vacío
+  useEffect(() => {
+    if (items.length === 0) {
+      router.push('/cart')
+    }
+  }, [items, router])
+  if (items.length === 0) return null
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-background via-muted to-background transition-colors py-10">
@@ -141,6 +148,17 @@ export default function CheckoutPage() {
           </Link>
         </div>
       </div>
+      <Modal
+        open={showModal}
+        title="¡Orden procesada!"
+        onClose={() => { setShowModal(false); }}
+        actionLabel="Volver al Catálogo"
+        onAction={() => { setShowModal(false); router.push('/catalog') }}
+      >
+        <div className="text-center text-lg text-primary-foreground">
+          Tu orden ha sido procesada exitosamente.
+        </div>
+      </Modal>
     </section>
   )
 }

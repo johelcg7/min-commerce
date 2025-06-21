@@ -61,6 +61,12 @@ export default function Navbar() {
               Catálogo
             </Link>
             <Link
+              href="/orders"
+              className="hover:text-primary text-foreground transition-colors font-medium duration-200 hover:scale-105 focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none"
+            >
+              Historial
+            </Link>
+            <Link
               href="/cart"
               className="flex items-center gap-2 hover:text-primary text-foreground transition-colors font-medium duration-200 hover:scale-105 focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none"
             >

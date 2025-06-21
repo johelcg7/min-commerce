@@ -19,8 +19,8 @@ interface OrderItem {
 
 interface Order {
   id: string
-  total: number
   createdAt: string
+  total: number
   items: OrderItem[]
 }
 
@@ -35,12 +35,12 @@ export default function OrdersPage() {
     setLoading(true)
     try {
       const response = await fetch(`/api/orders?clientId=${encodeURIComponent(email)}`)
-      if (!response.ok) throw new Error('Error al obtener órdenes')
+      if (!response.ok) throw new Error('Error al obtener historial')
       const data = await response.json()
       setOrders(data)
     } catch (error) {
       console.error('Error:', error)
-      alert('Error al obtener las órdenes')
+      alert('Error al obtener el historial')
     } finally {
       setLoading(false)
     }
@@ -49,7 +49,9 @@ export default function OrdersPage() {
   return (
     <section className="min-h-screen bg-gradient-to-br from-background via-muted to-background transition-colors py-10">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-extrabold text-primary mb-8 text-center uppercase">Órdenes</h1>
+        <h1 className="text-3xl font-extrabold text-primary mb-8 text-center uppercase">
+          Historial de Compras
+        </h1>
         <div className="mb-8 flex gap-4 justify-center">
           <Input
             type="email"
@@ -59,12 +61,12 @@ export default function OrdersPage() {
             className="max-w-xs bg-card text-card-foreground border-border placeholder:text-muted-foreground focus:ring-2 focus:ring-primary focus:bg-background/80 transition-colors"
           />
           <Button onClick={fetchOrders} disabled={!email || loading} className="bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-xl hover:scale-105 hover:from-primary/90 hover:to-accent/90 transition-transform">
-            {loading ? 'Cargando...' : 'Buscar Órdenes'}
+            {loading ? 'Cargando...' : 'Ver Historial'}
           </Button>
         </div>
         {orders.length === 0 ? (
           <p className="text-muted-foreground text-center text-lg">
-            {email ? 'No se encontraron órdenes para este email' : 'Ingresa tu email para ver tus órdenes'}
+            {email ? 'No se encontraron compras para este email' : 'Ingresa tu email para ver tu historial de compras'}
           </p>
         ) : (
           <div className="space-y-6 max-w-2xl mx-auto">
@@ -72,7 +74,7 @@ export default function OrdersPage() {
               <Card key={order.id} className="p-6 bg-gradient-to-br from-card via-muted to-card border border-border shadow-2xl text-card-foreground">
                 <div className="flex justify-between items-center mb-4">
                   <div>
-                    <p className="font-semibold text-blue-200">Orden #{order.id.slice(-6)}</p>
+                    <p className="font-semibold text-blue-200">Compra #{order.id.slice(-6)}</p>
                     <p className="text-sm text-blue-300">
                       {new Date(order.createdAt).toLocaleDateString()}
                     </p>
