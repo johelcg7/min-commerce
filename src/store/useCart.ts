@@ -1,10 +1,13 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+
 interface CartItem {
   id: string
   name: string
+  description: string      // <-- agrega esto
   price: number
+  imageUrl: string         // <-- y esto
   quantity: number
   stock: number
 }
@@ -17,6 +20,7 @@ interface CartState {
   clearCart: () => void
   getTotalItems: () => number
   getTotalPrice: () => number
+  getTotal: () => number;
 }
 
 export const useCart = create<CartState>()(
@@ -58,6 +62,10 @@ export const useCart = create<CartState>()(
       getTotalPrice: () => {
         const { items } = get()
         return items.reduce((total, item) => total + item.price * item.quantity, 0)
+      },
+      getTotal: () => {
+        const { items } = get();
+        return items.reduce((total, item) => total + item.price * item.quantity, 0);
       },
     }),
     {

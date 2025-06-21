@@ -1,6 +1,7 @@
 {
   "name": "prisma-client-8e3023544797a476aad3753f412da996f9ac155e5ef69a3ffcefc19de229813b",
   "main": "index.js",
+  "type": "module",
   "types": "index.d.ts",
   "browser": "index-browser.js",
   "exports": {

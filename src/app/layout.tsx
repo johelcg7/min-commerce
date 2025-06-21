@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { AuthProvider } from "@/components/providers";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Min-Commerce",
@@ -17,11 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
-      <body className={inter.className}>
+    <html lang="es" className="h-full">
+      <body className={`${GeistSans.className} antialiased h-full`}>
         <AuthProvider>
-          <Navbar />
-          <main className="min-h-screen bg-gray-50">{children}</main>
+          <div className="min-h-full">
+            <Navbar />
+            <main className="min-h-screen">{children}</main>
+          </div>
         </AuthProvider>
       </body>
     </html>

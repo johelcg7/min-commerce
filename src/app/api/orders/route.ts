@@ -2,6 +2,12 @@ import { prisma } from '@/lib/db/prisma'
 import { NextResponse } from 'next/server'
 import { checkoutFormSchema } from '@/lib/validations/schema'
 
+interface OrderItem {
+  quantity: number;
+  price: number;
+  productId: string;
+}
+
 export async function POST(request: Request) {
   try {
     const data = await request.json()
@@ -14,13 +20,14 @@ export async function POST(request: Request) {
       data: {
         clientId: validatedData.email, // Usamos el email como identificador del cliente
         total: data.total,
-        items: {
-          create: data.items.map((item: any) => ({
-            quantity: item.quantity,
-            price: item.price,
-            productId: item.productId,
-          })),
-        },
+
+       items: {
+  create: (data.items as OrderItem[]).map((item) => ({
+    quantity: item.quantity,
+    price: item.price,
+    productId: item.productId,
+  })),
+},
       },
       include: {
         items: true,
