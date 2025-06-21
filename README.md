@@ -1,68 +1,61 @@
-# Min-Commerce
+# Min Commerce
 
-Una tienda en línea moderna construida con Next.js, TypeScript y PostgreSQL.
+Min Commerce es una tienda de música construida con Next.js, React y Zustand. Este proyecto incluye funcionalidades modernas como modo oscuro sincronizado, gestión de carrito de compras, autenticación y una interfaz responsiva.
 
-## Características
+## Cambios y características implementadas
 
-- 🛍️ Catálogo de productos
-- 🛒 Carrito de compras
-- 🔐 Autenticación con Google
-- 💳 Proceso de checkout
-- 📦 Gestión de órdenes
-- 📱 Diseño responsive
+### Navbar con modo oscuro sincronizado
 
-## Tecnologías
+- El componente `Navbar` implementa un botón para alternar entre modo claro y oscuro.
+- El estado del modo oscuro se sincroniza con `localStorage` y entre pestañas usando el evento `storage`.
+- El modo oscuro se aplica agregando o quitando la clase `dark` al elemento raíz (`document.documentElement`).
+- El valor de modo oscuro se guarda bajo la clave `mincommerce-darkmode` en `localStorage`.
 
-- Next.js 15
-- TypeScript
-- PostgreSQL con Prisma
-- NextAuth.js para autenticación
-- Zustand para estado global
-- Tailwind CSS y shadcn/ui para UI
-- Zod para validación
+### Carrito de compras con Zustand
+
+- Se utiliza el store `useCart` (Zustand) para manejar el estado global del carrito.
+- El Navbar muestra el número total de ítems en el carrito, con animación si hay productos.
+
+### Componentes y UI
+
+- `Navbar` incluye enlaces a inicio, catálogo y carrito.
+- El logo utiliza iconos de Lucide y gradientes de color.
+- El botón de autenticación (`AuthButton`) está presente en la barra de navegación.
+- Se utiliza el componente `Button` para el botón de modo oscuro, con animaciones visuales para los iconos de sol y luna.
+
+### Accesibilidad y UX
+
+- Todos los botones y enlaces incluyen estilos de foco (`focus-visible:ring`).
+- El Navbar es sticky y tiene fondo difuminado (`backdrop-blur-lg`).
+
+## Estructura del proyecto
+
+- `src/components/Navbar.tsx`: Barra de navegación principal con modo oscuro y carrito.
+- `src/store/useCart.ts`: Store Zustand para el carrito.
+- `src/components/AuthButton.tsx`: Botón de autenticación.
+- `src/components/ui/button.tsx`: Componente de botón reutilizable.
 
 ## Instalación
 
-1. Clona el repositorio:
-```bash
-git clone https://github.com/<tu-usuario>/min-commerce.git
-cd min-commerce
-```
+1. Clona el repositorio.
+2. Instala dependencias:
+   ```bash
+   npm install
+   ```
+3. Ejecuta el proyecto:
+   ```bash
+   npm run dev
+   ```
 
-2. Instala las dependencias:
-```bash
-npm install
-```
+## Notas
 
-3. Configura las variables de entorno:
-- Copia `.env.example` a `.env.local`
-- Actualiza las variables con tus credenciales
+- El modo oscuro se mantiene entre sesiones y se sincroniza entre pestañas.
+- El número de productos en el carrito se actualiza en tiempo real.
+- El proyecto utiliza iconos de [Lucide](https://lucide.dev/) y estilos de Tailwind CSS.
 
-4. Configura la base de datos:
-```bash
-npx prisma generate
-npx prisma db push
-npm run db:seed
-```
+## Próximos pasos
 
-5. Inicia el servidor de desarrollo:
-```bash
-npm run dev
-```
+- Implementar más páginas y funcionalidades (checkout, perfil de usuario, etc).
+- Mejorar la cobertura de tests y documentación.
 
-## Estructura del Proyecto
-
-```
-min-commerce/
-├── src/
-│   ├── app/              # Rutas y páginas
-│   ├── components/       # Componentes reutilizables
-│   ├── lib/             # Utilidades y configuración
-│   └── store/           # Estado global con Zustand
-├── prisma/              # Esquema y migraciones
-└── public/             # Archivos estáticos
-```
-
-## Licencia
-
-MIT
+---
